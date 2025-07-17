@@ -62,8 +62,6 @@ OR
   ```bash
       pip install torch torchvision pillow opencv-python numpy pytorch-grad-cam
 3. Run
-
-  ```bash
       python gui_app.py
 
 
