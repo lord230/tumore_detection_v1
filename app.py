@@ -1,5 +1,4 @@
 import os
-import torch
 import numpy as np
 import streamlit as st
 from PIL import Image
@@ -8,10 +7,9 @@ from torchvision import transforms
 from pytorch_grad_cam import GradCAM, GradCAMPlusPlus
 from pytorch_grad_cam.utils.image import show_cam_on_image
 from pytorch_grad_cam.utils.model_targets import ClassifierOutputTarget
-
 from Models.model import densenet_model
 
-# ------------------- Model Setup ------------------- #
+
 st.set_page_config(
     page_title="Brain Tumor Detection",
     layout="wide",
@@ -44,11 +42,8 @@ transform = transforms.Compose([
 ])
 
 class_names = ['Glioma', 'Meningioma', 'No Tumor', 'Pituitary']
-
-# ------------------- Sidebar Upload ------------------- #
 st.sidebar.header("Upload MRI Image")
 file = st.sidebar.file_uploader("Choose an image", type=['jpg', 'jpeg', 'png'])
-
 if file:
     image = Image.open(file).convert("RGB")
     resized_image = image.resize((384, 384))
@@ -72,19 +67,19 @@ if file:
     for idx, prob in enumerate(probs):
         st.write(f"{class_names[idx]}: {prob*100:.2f}%")
 
-    # Grad-CAM
+ 
     cam = GradCAM(model=model, target_layers=[model.features.denseblock4], use_cuda=torch.cuda.is_available())
     grayscale_cam = cam(input_tensor=input_tensor, targets=[ClassifierOutputTarget(pred_class)])[0]
     cam_img = show_cam_on_image(rgb_np, grayscale_cam, use_rgb=True)
     cam_img_resized = cv2.resize(cam_img, (384, 384))
 
-    # Grad-CAM++
+  
     cam_pp = GradCAMPlusPlus(model=model, target_layers=[model.features.denseblock4], use_cuda=torch.cuda.is_available())
     grayscale_cam_pp = cam_pp(input_tensor=input_tensor, targets=[ClassifierOutputTarget(pred_class)])[0]
     cam_img_pp = show_cam_on_image(rgb_np, grayscale_cam_pp, use_rgb=True)
     cam_img_pp_resized = cv2.resize(cam_img_pp, (384, 384))
 
-    # Display
+
     st.subheader("Visualization")
     col1, col2, col3 = st.columns(3)
 
@@ -95,7 +90,6 @@ if file:
     with col3:
         st.image(cam_img_pp_resized, caption="Grad-CAM++", use_container_width=True)
 
-    # Save Button
     save_dir = "streamlit_saved_outputs"
     os.makedirs(save_dir, exist_ok=True)
     if st.button("Save Results"):
