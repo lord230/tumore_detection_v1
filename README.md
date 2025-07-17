@@ -1,62 +1,61 @@
-Brain Tumor Detection with GradCAM (Tkinter Desktop App)
-This is a desktop application for detecting brain tumors from MRI scans using a pre-trained deep learning model (DenseNet121). It features GradCAM and GradCAM++ visualizations to provide interpretable predictions. The interface is built using Tkinter with a clean, dark-themed UI.
+# Brain Tumor Detection with GradCAM (Tkinter Desktop App)
 
-Features
-Folder-based browsing of MRI images
+A lightweight desktop application to detect brain tumors from MRI scans using a DenseNet121 model. It provides visual explanations using GradCAM and GradCAM++ directly on a dark-themed Tkinter interface.
 
-Previous and next navigation for batch analysis
+---
 
-Real-time brain tumor classification
+## Table of Contents
 
-Visual explanation using GradCAM and GradCAM++
+- [Features](#features)
+- [Model Details](#model-details)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Screenshot](#screenshot)
+- [License](#license)
 
-Dynamic image resizing based on window size
+---
 
-Prompted save location when exporting visualizations
+## Features
 
-Styled buttons and a dark, modern interface
+- Folder-based image selection for batch viewing
+- Image classification into:
+  - Glioma
+  - Meningioma
+  - Pituitary
+  - No Tumor
+- Visualizations using GradCAM and GradCAM++
+- Previous/Next image navigation
+- Dynamically resizes images to fit the window
+- Save visualizations with a file dialog
+- Clean, dark-themed interface with styled buttons
 
-Model Details
-Backbone: DenseNet121
+---
 
-Trained on: Brain MRI dataset with 4 classes
-(Glioma, Meningioma, Pituitary, No Tumor)
+## Model Details
 
-Output: Class probabilities and visualization overlays
+- **Architecture**: DenseNet121
+- **Classes**: Glioma, Meningioma, Pituitary, No Tumor
+- **Input Size**: 384x384
+- **Framework**: PyTorch
+- **Preprocessing**:
+  - Grayscale to RGB
+  - Normalized to mean=0.5, std=0.5
 
-Requirements
-Install all dependencies with:
+> Model weights must be pre-trained and saved at:
 
-bash
-Copy
-Edit
+
+---
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/brain-tumor-gradcam-tkinter.git
+   cd brain-tumor-gradcam-tkinter
+pip install -r requirements.txt
+OR
 pip install torch torchvision pillow opencv-python numpy pytorch-grad-cam
-Folder Structure
-bash
-Copy
-Edit
-project_root/
-├── Models/
-│   └── model.py              # Contains densenet_model definition
-├── CheckPoints/
-│   └── densenet121_model.pth
-├── gui_app.py                # Main application file
-└── README.md
-How to Use
-Clone the repository.
 
-Make sure your model weights (.pth) and model definition are placed correctly under the paths shown above.
-
-Run the application:
-
-bash
-Copy
-Edit
 python gui_app.py
-Use the GUI to select a folder of MRI images and browse them.
 
-Screenshot
-Upload your app screenshot to this repository, then reference it here:
-
-Example (after upload):
-screenshots/app_ui.png
