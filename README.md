@@ -31,7 +31,6 @@ A lightweight desktop application to detect brain tumors from MRI scans using a 
 
 ---
 ## Screenshot
-![App UI](screenshot/Screenshot_351.png)
 ![App UI](screenshot/Screenshot_352.png)
 
 
