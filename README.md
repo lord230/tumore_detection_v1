@@ -53,7 +53,17 @@ A lightweight desktop application to detect brain tumors from MRI scans using a 
    ```bash
    git clone https://github.com/your-username/brain-tumor-gradcam-tkinter.git
    cd brain-tumor-gradcam-tkinter
+2. Install Dependencies
+
+    ```bash
+    pip install -r requirements.txt
+OR
+
   ```bash
-      pip install -r requirements.txt
-python gui_app.py
+      pip install torch torchvision pillow opencv-python numpy pytorch-grad-cam
+3. Run
+
+  ```bash
+      python gui_app.py
+
 
