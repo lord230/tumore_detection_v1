@@ -44,7 +44,6 @@ A lightweight desktop application to detect brain tumors from MRI scans using a 
   - Grayscale to RGB
   - Normalized to mean=0.5, std=0.5
 
-> Model weights must be pre-trained and saved at:
 
 
 ---
